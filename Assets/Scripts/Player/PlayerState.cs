@@ -83,7 +83,6 @@ namespace PlayerState
     }
     #endregion
 
-
     #region 移动状态
 
     public class Move : State
@@ -124,6 +123,7 @@ namespace PlayerState
                 //一个移动的方法   self.data.speed * 
                 //self.controller.Move(Time.deltaTime * self.GetRelativeDirection(self.input.PlayerBasic.Move.ReadValue<Vector2>()));
                 //self.transform.LookAt(self.transform.position + self.GetRelativeDirection(self.input.PlayerBasic.Move.ReadValue<Vector2>()));
+                //因为动画自带移动，所以这里只需要确定动画转向即可
                 self.CharacterRotationControl(self.input.PlayerBasic.Move.ReadValue<Vector2>());
             }
         }
@@ -142,7 +142,7 @@ namespace PlayerState
     {
         public Player self;
 
-        private float _attackCounter = 0;
+        private float attackCounter = 0;
 
 
         //用构造函数约定传入Player对象
@@ -163,9 +163,9 @@ namespace PlayerState
 
             if (self.input.PlayerBasic.Attack.WasPressedThisFrame())
             {
-                _attackCounter += 1;
-                //_resetTimer = 2;
-                switch (_attackCounter)
+                attackCounter += 1;
+
+                switch (attackCounter)
                 {
                     case 1:
                         self.anim.Play("Attack_Normal_01");
@@ -209,7 +209,7 @@ namespace PlayerState
         public override void OnExit()
         {
             base.OnExit();
-            _attackCounter = 0;
+            attackCounter = 0;
             //private float _resetTimer = self.data._resetTimer;
         }
 

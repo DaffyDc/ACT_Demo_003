@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public bool isAnimationFinished;
 
-    private Transform _mainCamera;
+    private Transform mainCamera;
 
 
     public IPlayerState current;
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        _mainCamera = Camera.main.transform;
+        mainCamera = Camera.main.transform;
         input = new PlayerInput();
         input.Enable();
         game = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
         data.rotationAngle =
         Mathf.Atan2(input.x, input.y) *
-        Mathf.Rad2Deg + _mainCamera.eulerAngles.y;
+        Mathf.Rad2Deg + mainCamera.eulerAngles.y;
 
 
         
