@@ -43,7 +43,6 @@ namespace PlayerState
     #region 待机状态
     public class Idle : State
     {
-        public Player self;
 
         public Idle(Player self) : base(self)
         {
@@ -87,7 +86,6 @@ namespace PlayerState
 
     public class Move : State
     {
-        public Player self;
         //用构造函数约定传入Player对象
         public Move(Player self):base(self)
         {
@@ -140,7 +138,6 @@ namespace PlayerState
     #region 攻击状态
     public class Attack : State
     {
-        public Player self;
 
         private float attackCounter = 0;
 
@@ -185,6 +182,7 @@ namespace PlayerState
 
                         self.anim.Play("Attack_Normal_04");
                         Debug.Log("Player普通攻击4段");
+                        attackCounter = 0;
                         break;
                 }
             }
