@@ -16,7 +16,18 @@ public class Move : State
     public override void OnEnter()
     {
         base.OnEnter();
-        self.anim.Play("Run_Start");
+        if (self.anim.GetBool("TurnBack") == true)
+        {
+            self.anim.Play("Run");
+            self.anim.SetBool("TurnBack", false);
+        }
+        else
+        {
+            self.anim.Play("Run_Start");
+            
+        }
+            
+
         self.anim.SetBool("Run", true);
     }
 
@@ -37,7 +48,7 @@ public class Move : State
 
         }
 
-        else if (self.input.PlayerBasic.Attack.IsPressed())
+        else if (self.input.PlayerBasic.Attack.triggered)
         {
             self.TransState(PlayerStateType.Attack);
             Debug.Log("ÇÐ»»ÖÁ¹¥»÷×´Ì¬");

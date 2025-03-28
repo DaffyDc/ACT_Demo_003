@@ -305,7 +305,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: -330, y: 340, z: 0}
+  m_EntryPosition: {x: -320, y: 350, z: 0}
   m_ExitPosition: {x: 390, y: 280, z: 0}
   m_ParentStateMachinePosition: {x: 200, y: 140, z: 0}
   m_DefaultState: {fileID: -3880305573741638999}
@@ -709,9 +709,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Run
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: TurnBack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 82202173909560161}

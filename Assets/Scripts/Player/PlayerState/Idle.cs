@@ -6,7 +6,7 @@ using UnityEngine;
 #region 待机状态
 public class Idle : State
 {
-
+    private Vector3 inputDir;
     public Idle(Player self) : base(self)
     {
         this.self = self;
@@ -23,10 +23,13 @@ public class Idle : State
     {
         base.OnUpdate();
 
-        if (Vector3.Angle(self.transform.forward, Vector3.one * self.input.PlayerBasic.Move.ReadValue<Vector2>()) > 90)
+        inputDir = new Vector3(self.input.PlayerBasic.Move.ReadValue<Vector2>().x, 0, self.input.PlayerBasic.Move.ReadValue<Vector2>().y);
+
+        if (Vector3.Angle(self.transform.forward,inputDir) > 135)
         {
-            Debug.Log(Vector3.Angle(self.transform.forward, Vector3.one * self.input.PlayerBasic.Move.ReadValue<Vector2>()));
-            //完蛋在转身跑过程中是还在调用转向，想办法屏蔽一下,有办法了单独给转向设立一个状态不就好了
+            Debug.Log(self.transform.forward);
+            Debug.Log(Vector3.Angle(self.transform.forward, (Vector3.one * self.input.PlayerBasic.Move.ReadValue<Vector2>()).normalized));
+
             self.TransState(PlayerStateType.TurnBack);
             Debug.Log("开始转身跑");
         }

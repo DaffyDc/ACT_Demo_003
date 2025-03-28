@@ -29,7 +29,7 @@ public class TurnBack : State
 
         if (self.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f)
         {
-            self.anim.SetBool("TurnBack", false);
+            //self.anim.SetBool("TurnBack", false);
             //用magnitude返回向量的平方根即向量的长度，通过向量的长度大于一个较小值，来判断是否存在输入
             if (self.input.PlayerBasic.Move.ReadValue<Vector2>().magnitude >= 0.05f)
             {
@@ -42,13 +42,19 @@ public class TurnBack : State
                 self.TransState(PlayerStateType.Attack);
                 Debug.Log("切换至攻击状态");
             }
+
+            else
+            {
+                self.TransState(PlayerStateType.Idle);
+                Debug.Log("切换至待机状态");
+            }
         }
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        self.anim.SetBool("TurnBack", false);
+        //self.anim.SetBool("TurnBack", false);
     }
 
 
