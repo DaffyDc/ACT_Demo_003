@@ -37,9 +37,10 @@ public class Player : MonoBehaviour
 
     //用字典的Add方法添加一个Idle状态类型
     //Add(键值，对象)
-    states.Add(PlayerStateType.Idle, new PlayerState.Idle(this));
-        states.Add(PlayerStateType.Move, new PlayerState.Move(this));
-        states.Add(PlayerStateType.Attack, new PlayerState.Attack(this));
+        states.Add(PlayerStateType.Idle, new Idle(this));
+        states.Add(PlayerStateType.Move, new Move(this));
+        states.Add(PlayerStateType.Attack, new Attack(this));
+        states.Add(PlayerStateType.TurnBack, new TurnBack(this));
         TransState(PlayerStateType.Idle);
     }
 
