@@ -2775,7 +2775,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -9318,12 +9318,12 @@ GameObject:
   - component: {fileID: 4692901597090410471}
   - component: {fileID: 4692901597090410472}
   m_Layer: 0
-  m_Name: "\u602A\u517D"
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2076375349615717095
 Transform:
   m_ObjectHideFlags: 0

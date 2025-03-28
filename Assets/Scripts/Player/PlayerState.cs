@@ -59,8 +59,15 @@ namespace PlayerState
         public override void OnUpdate()
         {
             base.OnUpdate();
+
+            if (Vector3.Angle(self.transform.forward, Vector3.one * self.input.PlayerBasic.Move.ReadValue<Vector2>()) > 90)
+            {
+                //完蛋在转身跑过程中是还在调用转向，想办法屏蔽一下
+                self.anim.Play ("TurnBack");
+                Debug.Log("开始转身跑");
+            }
             //用magnitude返回向量的平方根即向量的长度，通过向量的长度大于一个较小值，来判断是否存在输入
-            if (self.input.PlayerBasic.Move.ReadValue<Vector2>().magnitude >= 0.05f)
+            else if (self.input.PlayerBasic.Move.ReadValue<Vector2>().magnitude >= 0.05f)
             {
                 self.TransState(PlayerStateType.Move);
                 Debug.Log("切换至移动状态");
@@ -102,12 +109,18 @@ namespace PlayerState
         public override void OnUpdate()
         {
             base.OnUpdate();
+
             //用magnitude返回向量的平方根即向量的长度，通过向量的长度大于一个较小值，来判断是否存在输入
+
+            
+
             if (self.input.PlayerBasic.Move.ReadValue<Vector2>().magnitude <= 0.05f)
             {
+
                 self.anim.SetBool("Run", false);
                 self.TransState(PlayerStateType.Idle);
                 Debug.Log("切换至待机状态");
+
             }
 
             else if(self.input.PlayerBasic.Attack.IsPressed())
@@ -115,6 +128,8 @@ namespace PlayerState
                 self.TransState(PlayerStateType.Attack);
                 Debug.Log("切换至攻击状态");
             }
+            //Debug.Log(Vector3.Angle(self.transform.forward, Vector3.one * self.input.PlayerBasic.Move.ReadValue<Vector2>()));
+            
 
             else
             {
