@@ -23,11 +23,12 @@ public class Attack : State
     public override void OnEnter()
     {
         base.OnEnter();
+        self.freeCam.m_YAxis.m_InputAxisName = "";
         //记录相机攻击时的初始角度
         originalXAngle = self.freeCam.m_XAxis.Value;
         originalYAngle = self.freeCam.m_YAxis.Value;
 
-        //self.TipCameraX(self.data.camRotationX);
+        
         switch (attackCounter)
         {
             case 1:
@@ -54,7 +55,7 @@ public class Attack : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-
+        self.OnNormalAttackCamera(self.data.attackYAngle);
         if (self.input.PlayerBasic.Attack.WasPressedThisFrame())
         {
             attackCounter += 1;
@@ -103,6 +104,7 @@ public class Attack : State
         base.OnExit();
         attackCounter = 1;
         //private float _resetTimer = self.data._resetTimer;
+        self.freeCam.m_YAxis.m_InputAxisName = "Mouse Y";
     }
 
 

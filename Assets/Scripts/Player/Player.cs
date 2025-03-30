@@ -129,15 +129,15 @@ public class Player : MonoBehaviour
     #endregion
 
     #region 摄像机方法
-    public void OnNormalAttackCameraX(float angle)
+    public void OnNormalAttackCamera(float angle)
     {
-        freeCam.m_XAxis.Value = Mathf.Lerp(freeCam.m_XAxis.Value,data.attackXAngle,Time.deltaTime*2f);
+        freeCam.m_XAxis.Value = Mathf.Lerp(freeCam.m_YAxis.Value, angle, Time.deltaTime * 2f);
         Debug.Log("普攻开始了，快对镜头使用特殊处理！");
     }
 
     public void ExitNormalAttackCameraX(float angle)
     {
-        freeCam.m_XAxis.Value = Mathf.Lerp(freeCam.m_XAxis.Value, data.attackXAngle, Time.deltaTime * 2f);
+        freeCam.m_XAxis.Value = Mathf.Lerp(freeCam.m_XAxis.Value, angle, Time.deltaTime * 2f);
         Debug.Log("普攻完事了，还原镜头处理吧！");
     }
     #endregion
