@@ -2,31 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerState;
+using Cinemachine;
 
 [RequireComponent(typeof(Animator), typeof(CharacterController))]
 
 public class Player : MonoBehaviour
 {
+    //声明对象用来数据来源，而不是处理的结果
     public PlayerData data;
     public GameManager game;
     public CharacterController controller;
     public Animator anim;
     public PlayerInput input;
+    public Vector3 inputDirLevel;
 
     public bool isAnimationFinished;
 
-    private Transform mainCamera;
+    public Transform mainCamera;
+    public CinemachineFreeLook freeCam;
 
 
     public IPlayerState current;
     public IPlayerState last;
     //声明一个泛型字典用于查找状态，需要传入PlayerState中的枚举状态种类
-    public Dictionary<PlayerState.PlayerStateType, IPlayerState> states = new Dictionary<PlayerState.PlayerStateType, IPlayerState>();
+    public Dictionary<PlayerStateType, IPlayerState> states = new Dictionary<PlayerStateType, IPlayerState>();
 
 
     // Start is called before the first frame update
     private void Awake()
     {
+        
         mainCamera = Camera.main.transform;
         input = new PlayerInput();
         input.Enable();
@@ -53,6 +58,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         current.OnUpdate();
+        inputDirLevel = new Vector3(input.PlayerBasic.Move.ReadValue<Vector2>().x, 0, input.PlayerBasic.Move.ReadValue<Vector2>().y);
     }
 
     public void TransState(PlayerStateType type)
@@ -122,8 +128,31 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region 摄像机方法
+    public void OnNormalAttackCameraX(float angle)
+    {
+        freeCam.m_XAxis.Value = Mathf.Lerp(freeCam.m_XAxis.Value,data.attackXAngle,Time.deltaTime*2f);
+        Debug.Log("普攻开始了，快对镜头使用特殊处理！");
+    }
+
+    public void ExitNormalAttackCameraX(float angle)
+    {
+        freeCam.m_XAxis.Value = Mathf.Lerp(freeCam.m_XAxis.Value, data.attackXAngle, Time.deltaTime * 2f);
+        Debug.Log("普攻完事了，还原镜头处理吧！");
+    }
+    #endregion
 
     #region 待实现方法
+    public void PlayFootSound()
+    {
+
+    }
+
+    public void PlayFootBackSound()
+    {
+
+    }
+
     public void EnablePreInput()
     {
 

@@ -27,7 +27,7 @@ public class TurnBack : State
     {
         base.OnUpdate();
 
-        if (self.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f)
+        if (self.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f)
         {
             //self.anim.SetBool("TurnBack", false);
             //用magnitude返回向量的平方根即向量的长度，通过向量的长度大于一个较小值，来判断是否存在输入
@@ -45,6 +45,7 @@ public class TurnBack : State
 
             else
             {
+                self.anim.SetBool("Run", false);
                 self.TransState(PlayerStateType.Idle);
                 Debug.Log("切换至待机状态");
             }
@@ -54,7 +55,7 @@ public class TurnBack : State
     public override void OnExit()
     {
         base.OnExit();
-        //self.anim.SetBool("TurnBack", false);
+
     }
 
 

@@ -9,6 +9,10 @@ public class Attack : State
 
     private float attackCounter = 1;
 
+    //记录镜头旋转前的初始角度
+    private float originalYAngle;
+    private float originalXAngle;
+
 
     //用构造函数约定传入Player对象
     public Attack(Player self) : base(self)
@@ -19,6 +23,11 @@ public class Attack : State
     public override void OnEnter()
     {
         base.OnEnter();
+        //记录相机攻击时的初始角度
+        originalXAngle = self.freeCam.m_XAxis.Value;
+        originalYAngle = self.freeCam.m_YAxis.Value;
+
+        //self.TipCameraX(self.data.camRotationX);
         switch (attackCounter)
         {
             case 1:

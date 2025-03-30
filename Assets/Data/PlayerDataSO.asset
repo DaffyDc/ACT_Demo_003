@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd444bddb57d204c96e62f120a4f1e7, type: 3}
   m_Name: PlayerDataSO
   m_EditorClassIdentifier: 
+  camRotationX: {x: -90, y: 0, z: 0}
   rotationSmoothTime: 0.15
-  rotationAngle: 358.3416
-  angleVelocity: 0
+  rotationAngle: 325.8
+  angleVelocity: -80.15722
   speed: 4
   attackCounter: 4

@@ -1,18 +1,27 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public CinemachineFreeLook freeCam;
+    public Player self;
+    public Vector3 rotateAngleX;
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
+    }
+
+    public void TipCameraZ(Vector3 angle)
+    {
+        self.mainCamera.Rotate(angle);
     }
 }

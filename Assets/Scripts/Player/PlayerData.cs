@@ -5,6 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Demo/Data",fileName ="PlayerDataSO")]
 public class PlayerData : ScriptableObject
 {
+    [Header("镜头相关")]
+    [SerializeField, Header("绕x轴倾斜角度")]
+    public float attackXAngle;
+    [SerializeField, Header("绕x轴倾斜角度")]
+    public float attackYAngle;
+
+
     [Header("移动相关")]
     [SerializeField, Header("人物旋转平滑时间")]
     public float rotationSmoothTime;
