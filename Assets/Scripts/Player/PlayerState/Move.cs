@@ -35,9 +35,10 @@ public class Move : State
     {
         base.OnUpdate();
 
-        //用magnitude返回向量的平方根即向量的长度，通过向量的长度大于一个较小值，来判断是否存在输入
+        //用四元数来进行，输入坐标系基于镜头的变换修正
+        Quaternion rot = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
-        if (Vector3.Angle(self.transform.forward.normalized, self.inputDirLevel.normalized) > 150)
+        if (Vector3.Angle(self.transform.forward.normalized, rot * self.inputDirLevel.normalized) > 150) 
         {
             Debug.Log(self.transform.forward.normalized);
             Debug.Log(Vector3.Angle(self.transform.forward.normalized, self.inputDirLevel.normalized));
@@ -45,7 +46,7 @@ public class Move : State
             self.TransState(PlayerStateType.TurnBack);
             Debug.Log("开始转身跑");
         }
-
+        //用magnitude返回向量的平方根即向量的长度，通过向量的长度大于一个较小值，来判断是否存在输入
         else if (self.input.PlayerBasic.Move.ReadValue<Vector2>().magnitude <= 0.05f)
         {
             //此处为了让动画顺利过度到Run_End中

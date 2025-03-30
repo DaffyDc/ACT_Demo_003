@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     {
         current.OnUpdate();
         inputDirLevel = new Vector3(input.PlayerBasic.Move.ReadValue<Vector2>().x, 0, input.PlayerBasic.Move.ReadValue<Vector2>().y);
+        Debug.Log(inputDirLevel.normalized);
     }
 
     public void TransState(PlayerStateType type)

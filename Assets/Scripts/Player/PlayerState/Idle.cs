@@ -26,7 +26,6 @@ public class Idle : State
     {
         base.OnUpdate();
 
-
         /*if (Vector3.Angle(self.transform.forward,self.inputDirLevel) > 135)
         {
             Debug.Log(self.transform.forward);
