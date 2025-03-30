@@ -37,10 +37,10 @@ public class Move : State
 
         //用magnitude返回向量的平方根即向量的长度，通过向量的长度大于一个较小值，来判断是否存在输入
 
-        if (Vector3.Angle(self.transform.forward, self.inputDirLevel) > 150)
+        if (Vector3.Angle(self.transform.forward.normalized, self.inputDirLevel.normalized) > 150)
         {
-            Debug.Log(self.transform.forward);
-            Debug.Log(Vector3.Angle(self.transform.forward, (Vector3.one * self.input.PlayerBasic.Move.ReadValue<Vector2>()).normalized));
+            Debug.Log(self.transform.forward.normalized);
+            Debug.Log(Vector3.Angle(self.transform.forward.normalized, self.inputDirLevel.normalized));
 
             self.TransState(PlayerStateType.TurnBack);
             Debug.Log("开始转身跑");
@@ -74,7 +74,8 @@ public class Move : State
             //self.transform.LookAt(self.transform.position + self.GetRelativeDirection(self.input.PlayerBasic.Move.ReadValue<Vector2>()));
             //因为动画自带移动，所以这里只需要确定动画转向即可
             self.CharacterRotationControl(self.input.PlayerBasic.Move.ReadValue<Vector2>());
-            
+            self.anim.SetBool("Run", true);
+
         }
     }
 

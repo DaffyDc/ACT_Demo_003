@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("¾µÍ·Ïà¹Ø")]
-    [SerializeField, Header("ÈÆxÖáÇãĞ±½Ç¶È")]
+    [SerializeField, Header("¹¥»÷YAxis")]
     public float attackXAngle;
-    [SerializeField, Header("ÈÆxÖáÇãĞ±½Ç¶È")]
+    [SerializeField, Header("¹¥»÷XAxis")]
     public float attackYAngle;
 
 

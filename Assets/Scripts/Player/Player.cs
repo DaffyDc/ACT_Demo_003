@@ -131,7 +131,8 @@ public class Player : MonoBehaviour
     #region 摄像机方法
     public void OnNormalAttackCamera(float angle)
     {
-        freeCam.m_XAxis.Value = Mathf.Lerp(freeCam.m_YAxis.Value, angle, Time.deltaTime * 2f);
+        //更改镜头Y轴坐标YAxis，等价于相机绕X轴移动
+        freeCam.m_YAxis.Value = Mathf.Lerp(freeCam.m_YAxis.Value, angle, Time.deltaTime * 1f);
         Debug.Log("普攻开始了，快对镜头使用特殊处理！");
     }
 
