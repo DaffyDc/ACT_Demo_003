@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd444bddb57d204c96e62f120a4f1e7, type: 3}
   m_Name: PlayerDataSO
   m_EditorClassIdentifier: 
-  attackXAngle: 0.15
-  attackYAngle: 0
+  attackYAngle: 0.3
+  normalYAngle: 0.8
   rotationSmoothTime: 0.15
-  rotationAngle: 209.51218
-  angleVelocity: -84.026726
+  rotationAngle: -16.523602
+  angleVelocity: -394.38422
   speed: 4
   attackCounter: 4

@@ -8,10 +8,8 @@ public class Attack : State
 {
 
     private float attackCounter = 1;
+    private float adjustCamSpeed;
 
-    //记录镜头旋转前的初始角度
-    private float originalYAngle;
-    private float originalXAngle;
 
 
     //用构造函数约定传入Player对象
@@ -24,9 +22,8 @@ public class Attack : State
     {
         base.OnEnter();
         self.freeCam.m_YAxis.m_InputAxisName = "";
-        //记录相机攻击时的初始角度
-        originalXAngle = self.freeCam.m_XAxis.Value;
-        originalYAngle = self.freeCam.m_YAxis.Value;
+
+        
 
         
         switch (attackCounter)
@@ -55,7 +52,8 @@ public class Attack : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        self.OnNormalAttackCamera(self.data.attackYAngle);
+        self.AdjustCamera(self.data.attackYAngle, ref adjustCamSpeed);
+
         if (self.input.PlayerBasic.Attack.WasPressedThisFrame())
         {
             attackCounter += 1;
@@ -105,6 +103,8 @@ public class Attack : State
         attackCounter = 1;
         //private float _resetTimer = self.data._resetTimer;
         self.freeCam.m_YAxis.m_InputAxisName = "Mouse Y";
+
+        //self.AdjustCamera(self.data.normalYAngle, ref adjustCamSpeed);
     }
 
 

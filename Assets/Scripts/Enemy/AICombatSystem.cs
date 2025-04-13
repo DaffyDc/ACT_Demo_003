@@ -21,17 +21,59 @@ public class AICombatSystem : MonoBehaviour
     {
         targetCount =
             Physics.OverlapSphereNonAlloc(detectionCenter.position, detectionRange, colliderTarget, whatIsEnemy);
-        if (targetCount > 0)
+        /*if (targetCount > 0)
         {
             if (Physics.Raycast((transform.root.position + transform.up * 0.5f), (colliderTarget[0].transform.position - transform.root.position).normalized, out var hit, detectionRange, whatIsObs))
             {
                 //Dot方法求两个向量的点积，返回1说明方向相同，返回-1方向相反，返回0方向垂直
-                if(Vector3.Dot((colliderTarget[0].transform.position - transform.root.position).normalized, transform.root.forward) > 0.15f)
+                if (Vector3.Dot((colliderTarget[0].transform.position - transform.root.position).normalized, transform.root.forward) > 0.25f)
+                {
+                    currentTarget = colliderTarget[0].transform;
+                }
+            }
+        }*/
+
+        if (targetCount > 0 && colliderTarget[0] != null)
+        {
+            Vector3 origin = detectionCenter.position;  // 更合理的起点
+            Vector3 direction = (colliderTarget[0].transform.position - origin).normalized;
+
+            // 调试绘制射线
+            Debug.DrawRay(origin, direction * detectionRange, Color.yellow);
+
+            if (!Physics.Raycast(
+                    origin,
+                    direction,
+                    out var hit,
+                    detectionRange,
+                    whatIsObs
+                ))
+            {
+                // 直接检测到 Player，无障碍物阻挡
+                float dotValue = Vector3.Dot(direction, transform.forward);
+                if (dotValue > 0.25f)
                 {
                     currentTarget = colliderTarget[0].transform;
                 }
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (detectionCenter != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(detectionCenter.position, detectionRange);
+        }
+    }
+
+    public void Update()
+    {
+        AIView();
+        OnDrawGizmosSelected();
+
+
     }
 
 }

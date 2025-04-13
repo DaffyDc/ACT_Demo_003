@@ -7,9 +7,9 @@ public class PlayerData : ScriptableObject
 {
     [Header("镜头相关")]
     [SerializeField, Header("攻击YAxis")]
-    public float attackXAngle;
-    [SerializeField, Header("攻击XAxis")]
     public float attackYAngle;
+    [SerializeField, Header("回退YAxis")]
+    public float normalYAngle;
 
 
     [Header("移动相关")]
