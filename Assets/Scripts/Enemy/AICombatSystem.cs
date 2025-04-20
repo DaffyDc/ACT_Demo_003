@@ -72,8 +72,6 @@ public class AICombatSystem : MonoBehaviour
     {
         AIView();
         OnDrawGizmosSelected();
-
-
     }
 
 }
